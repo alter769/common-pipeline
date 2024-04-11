@@ -30,6 +30,12 @@ jobs:
       run: |
         ls ${{ github.workspace }}
     - run: echo "This job's status is ${{ job.status }}."
+    - name: Get version from pom
+      id: pomversion
+      run: |
+	  apiVersion=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
+	  echo $apiVersion
+
 
   DeployDev:
     name: Deploy to DEV
@@ -42,10 +48,7 @@ jobs:
       - name: Deploy to DEV
         run: echo Deploying to DEV environment...
       - run: echo "This job's status is ${{ job.status }}."
-#      - name: Get version from pom
-#        run: |
-#	  msgout=$(echo "test" | tr '\n' ' ')
-#	  echo $msgout >> $GITHUB_OUTPUT
+
 
   DeploySit:
     name: Deploy to SIT
