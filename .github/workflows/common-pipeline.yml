@@ -71,6 +71,8 @@ jobs:
 #      run: echo "apiVersion=$pomVersion" >> "$GITHUB_OUTPUT"
       run: echo "apiVersion=1.0.0" >> "$GITHUB_OUTPUT"      
     - run: echo "This job's status is ${{ job.status }}."
+
+# Use the template below to save the apiVersion to a file
     - name: Retrieve apiVersion from file
       uses: actions/download-artifact@v4
       with:
@@ -81,6 +83,8 @@ jobs:
         echo value from file=$apiVersionFromFile
 
   DeploySit:
+  # NOTE: if ${{ needs.BuildJob.outputs.apiVersion }} is used in the 'name' below, it will NOT work (possibly because BuildJob has ended by the time that DeploySit begins"
+  # therefore, the workaround is to re-export the same apiVersion value from DeployDev job, and use with ${{ needs.DeployDev.outputs.apiVersion }}
     name: Deploy ${{ needs.DeployDev.outputs.apiVersion }} to SIT
     runs-on: ubuntu-latest
     needs: [DeployDev]
@@ -94,6 +98,8 @@ jobs:
     - name: Deploy to SIT
       run: echo Deploying to SIT environment...
     - run: echo "This job's status is ${{ job.status }}."
+
+# Use the template below to retrieve the apiVersion from a file
     - name: Retrieve apiVersion from file
       uses: actions/download-artifact@v4
       with:
