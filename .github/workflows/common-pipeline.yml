@@ -12,7 +12,7 @@ on:
 
 jobs:
   BuildJob:
-    name: Build
+    name: Build ${{ steps.api_version.outputs.apiVersion }}
     runs-on: ubuntu-latest
     outputs:
       apiVersion: ${{ steps.api_version.outputs.apiVersion }}
