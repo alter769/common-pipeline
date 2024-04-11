@@ -11,7 +11,7 @@ on:
 #        required: true
 
 jobs:
-  build:
+  BuildJob:
     name: Build
     runs-on: ubuntu-latest
     outputs:
@@ -25,10 +25,11 @@ jobs:
     - run: echo "This job is now running on a ${{ runner.os }} server hosted by GitHub!"
     - name: Get version from pom
       run:  |
-        apiVersion=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
+        pomVersion=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
     - name: Export api version
       id: api_version
-      run: echo "apiVersion=$apiVersion" >> "$GITHUB_OUTPUT"
+#      run: echo "apiVersion=$pomVersion" >> "$GITHUB_OUTPUT"
+       run: echo "apiVersion=1.0.0" >> "$GITHUB_OUTPUT"
     - run: echo "The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
     - name: Check out repository code
       uses: actions/checkout@v4
@@ -44,13 +45,13 @@ jobs:
   DeployDev:
     name: Deploy to DEV
     runs-on: ubuntu-latest
-    needs: [build]
+    needs: BuildJob
     environment:
       name: DEV
       url: 'http://dev-api.copeland.com'
     steps:
       - env:
-          API_VERSION: ${{ needs.build.outputs.apiVersion }}
+          API_VERSION: ${{ needs.BuildJob.outputs.apiVersion }}
         run: echo "$API_VERSION ..."
       - name: Deploy to DEV	  
         run: echo "Deploying to DEV environment version $API_VERSION ..."
