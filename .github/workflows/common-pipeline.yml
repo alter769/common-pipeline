@@ -57,7 +57,7 @@ jobs:
       url: 'http://dev-api.copeland.com'
     steps:
     - env:
-      API_VERSION: ${{ needs.BuildJob.outputs.apiVersion }}
+        API_VERSION: ${{ needs.BuildJob.outputs.apiVersion }}
       run: echo "$API_VERSION ..."
     - name: Deploy to DEV	  
       run: echo "Deploying to DEV environment version $API_VERSION ..."
@@ -80,7 +80,7 @@ jobs:
       url: 'http://sit-api.copeland.com'
     steps:
     - env:
-      API_VERSION: ${{ needs.BuildJob.outputs.apiVersion }}
+        API_VERSION: ${{ needs.BuildJob.outputs.apiVersion }}
       run: echo "$API_VERSION ..."    
     - name: Deploy to SIT
       run: echo Deploying to SIT environment...
