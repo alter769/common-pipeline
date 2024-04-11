@@ -15,7 +15,7 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     outputs:
-      apiVersion: ${{ steps.build.outputs.pomVersion }}
+      apiVersion: ${{ steps.api_version.outputs.apiVersion }}
     steps:
 #    - uses: actions/labeler@v4
 #      with:
@@ -25,9 +25,10 @@ jobs:
     - run: echo "This job is now running on a ${{ runner.os }} server hosted by GitHub!"
     - name: Get version from pom
       run:  |
-        pomVersion=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
-    - name: Export version
-      run: echo "apiVersion=$pomVersion" >> "$GITHUB_OUTPUT"
+        apiVersion=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
+    - name: Export api version
+      id: api_version
+      run: echo "apiVersion=$apiVersion" >> "$GITHUB_OUTPUT"
     - run: echo "The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
     - name: Check out repository code
       uses: actions/checkout@v4
