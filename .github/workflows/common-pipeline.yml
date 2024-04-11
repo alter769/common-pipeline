@@ -43,7 +43,7 @@ jobs:
         run: echo Deploying to DEV environment...
       - run: echo "This job's status is ${{ job.status }}."
       - name: Get version from pom
-        run: echo 1.0.0 >> $GITHUB_VERSION
+        run: echo 1.0.0 >> $GITHUB_OUTPUT
 
 
   DeploySit:
