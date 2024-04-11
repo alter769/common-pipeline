@@ -39,7 +39,8 @@ jobs:
       run: |
         git config --global user.email "cicd@company.com"
         git config --global user.name "MuleSoft Pipeline"
-        cd ${{github.repository}}
+        pwd
+	echo $(pwd)
         git checkout develop
         git commit --amend -m "Version 1.0.0"
         git push --force ${{github.repository}} ${{github.ref}}
