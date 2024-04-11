@@ -45,7 +45,7 @@ jobs:
     - name: Save apiVersion to file
       uses: actions/upload-artifact@v4
       with:
-        name: api_version_from_file
+        name: api-version-from-file
         path: api-version.txt
 	retention-days: 5
 
@@ -57,20 +57,20 @@ jobs:
       name: DEV
       url: 'http://dev-api.copeland.com'
     steps:
-      - env:
-          API_VERSION: ${{ needs.BuildJob.outputs.apiVersion }}
-        run: echo "$API_VERSION ..."
-      - name: Deploy to DEV	  
-        run: echo "Deploying to DEV environment version $API_VERSION ..."
-      - run: echo "This job's status is ${{ job.status }}."
-      - name: Retrieve apiVersion from file
-        uses: actions/download-artifact@v4
-        with:
-          name: api_version_from_file
-      - shell: bash
-        run: |
-          apiVersionFromFile=`cat api-version.txt`
-          echo value from file=$apiVersionFromFile
+    - env:
+      API_VERSION: ${{ needs.BuildJob.outputs.apiVersion }}
+      run: echo "$API_VERSION ..."
+    - name: Deploy to DEV	  
+      run: echo "Deploying to DEV environment version $API_VERSION ..."
+    - run: echo "This job's status is ${{ job.status }}."
+    - name: Retrieve apiVersion from file
+      uses: actions/download-artifact@v4
+      with:
+        name: api-version-from-file
+    - shell: bash
+      run: |
+        apiVersionFromFile=`cat api-version.txt`
+        echo value from file=$apiVersionFromFile
 
   DeploySit:
     name: Deploy ${{ needs.BuildJob.outputs.apiVersion }} to SIT
@@ -80,10 +80,10 @@ jobs:
       name: SIT
       url: 'http://sit-api.copeland.com'
     steps:
-      - env:
-          API_VERSION: ${{ needs.BuildJob.outputs.apiVersion }}
-        run: echo "$API_VERSION ..."    
-      - name: Deploy to SIT
-        run: echo Deploying to SIT environment...
-      - run: echo "This job's status is ${{ job.status }}."
+    - env:
+      API_VERSION: ${{ needs.BuildJob.outputs.apiVersion }}
+      run: echo "$API_VERSION ..."    
+    - name: Deploy to SIT
+      run: echo Deploying to SIT environment...
+    - run: echo "This job's status is ${{ job.status }}."
 
