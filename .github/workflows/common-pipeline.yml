@@ -32,12 +32,13 @@ jobs:
       id: api_version
 #      run: echo "apiVersion=$pomVersion" >> "$GITHUB_OUTPUT"
       run: echo "apiVersion=1.0.0" >> "$GITHUB_OUTPUT"
-    - run: echo "The version is $pomVersion"
 
-    - shell: bash
-      run: |
-        git commit --amend -m "Version 1.0.0"
-	git push --force ${{github.repository}} ${{github.ref}}
+#    - run: echo "The version is $pomVersion"
+
+#    - shell: bash
+#      run: |
+#        git commit --amend -m "Version 1.0.0"
+#	git push --force ${{github.repository}} ${{github.ref}}
 
     - name: List files in the repository
       run: |
