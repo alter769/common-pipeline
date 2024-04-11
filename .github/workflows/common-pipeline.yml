@@ -29,7 +29,7 @@ jobs:
     - name: Export api version
       id: api_version
 #      run: echo "apiVersion=$pomVersion" >> "$GITHUB_OUTPUT"
-       run: echo "apiVersion=1.0.0" >> "$GITHUB_OUTPUT"
+      run: echo "apiVersion=1.0.0" >> "$GITHUB_OUTPUT"
     - run: echo "The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
     - name: Check out repository code
       uses: actions/checkout@v4
