@@ -1,5 +1,5 @@
 name: Common workflow
-run-name: 1.0.0
+#run-name: 1.0.0
 
 on:
   workflow_call:
@@ -75,7 +75,7 @@ jobs:
         echo value from file=$apiVersionFromFile
 
   DeploySit:
-    name: Deploy $(echo $apiVersionFromFile) to SIT
+    name: Deploy ${{ needs.BuildJob.outputs.apiVersion }} to SIT
     runs-on: ubuntu-latest
     needs: [DeployDev]
     environment:
