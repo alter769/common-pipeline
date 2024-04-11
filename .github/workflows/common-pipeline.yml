@@ -1,4 +1,5 @@
 name: Common workflow
+run-name: 1.0.0
 
 on:
   workflow_call:
