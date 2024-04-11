@@ -27,8 +27,7 @@ jobs:
         apiVersion=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
     - name: Export version
       id: publish-version
-      run:  |
-	echo "apiVersion=$apiVersion" >> $GITHUB_OUTPUT	
+      run:  echo "apiVersion=$apiVersion" >> $GITHUB_OUTPUT	
     - run: echo "The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
     - name: Check out repository code
       uses: actions/checkout@v4
