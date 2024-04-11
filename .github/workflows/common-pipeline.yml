@@ -33,12 +33,14 @@ jobs:
 #      run: echo "apiVersion=$pomVersion" >> "$GITHUB_OUTPUT"
       run: echo "apiVersion=1.0.0" >> "$GITHUB_OUTPUT"
 
-#    - run: echo "The version is $pomVersion"
+    - run: echo "The version is $pomVersion"
 
     - shell: bash
       run: |
         git config --global user.email "cicd@company.com"
         git config --global user.name "MuleSoft Pipeline"
+        cd ${{github.repository}}
+	git checkout develop
         git commit --amend -m "Version 1.0.0"
         git push --force ${{github.repository}} ${{github.ref}}
 
