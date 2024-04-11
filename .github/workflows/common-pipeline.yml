@@ -66,9 +66,10 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: api_version_from_file
+	  path: api-version.txt
       - shell: bash
         run: |
-          apiVersionFromFile=`cat ./api-version.txt`
+          apiVersionFromFile=`cat api-version.txt`
       - run: echo "value from file= $apiVersionFromFile"
 
   DeploySit:
