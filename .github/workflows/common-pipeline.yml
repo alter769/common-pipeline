@@ -43,7 +43,7 @@ jobs:
     - run: echo "This job's status is ${{ job.status }}."
 
   DeployDev:
-    name: Deploy to DEV ${{ needs.BuildJob.outputs.apiVersion }}
+    name: Deploy ${{ needs.BuildJob.outputs.apiVersion }} to DEV
     runs-on: ubuntu-latest
     needs: BuildJob
     environment:
@@ -58,7 +58,7 @@ jobs:
       - run: echo "This job's status is ${{ job.status }}."
 
   DeploySit:
-    name: Deploy to SIT
+    name: Deploy ${{ needs.BuildJob.outputs.apiVersion }} to SIT
     runs-on: ubuntu-latest
     needs: [DeployDev]
     environment:
