@@ -47,6 +47,7 @@ jobs:
       with:
         name: api_version_from_file
         path: api-version.txt
+	retention-days: 5
 
   DeployDev:
     name: Deploy ${{ needs.BuildJob.outputs.apiVersion }} to DEV
