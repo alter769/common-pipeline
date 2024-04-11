@@ -53,7 +53,7 @@ jobs:
       - name: Deploy to DEV $API_VERSION
         env:
           API_VERSION: ${{ needs.build.outputs.apiVersion }}
-        run: echo Deploying to DEV environment version $API_VERSION ...
+        run: echo Deploying to DEV environment version ${{ API_VERSION }} ...
       - run: echo "This job's status is ${{ job.status }}."
 
   DeploySit:
