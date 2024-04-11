@@ -14,6 +14,8 @@ jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
+    outputs:
+      apiVersion: ${{ steps.build.outputs.pomVersion }}
     steps:
 #    - uses: actions/labeler@v4
 #      with:
@@ -24,10 +26,10 @@ jobs:
     - name: Get version from pom
       id: pom-version
       run:  |
-        apiVersion=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
+        pomVersion=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
     - name: Export version
       id: publish-version
-      run:  echo "apiVersion=$apiVersion" >> $GITHUB_OUTPUT	
+      run:  echo "apiVersion=$pomVersion" >> $GITHUB_OUTPUT	
     - run: echo "The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
     - name: Check out repository code
       uses: actions/checkout@v4
@@ -48,10 +50,11 @@ jobs:
       name: DEV
       url: 'http://dev-api.copeland.com'
     steps:
-      - name: Deploy to DEV
+      - env:
+          API_VERSION: ${{ needs.build.outputs.apiVersion }}
+      - name: Deploy to DEV $API_VERSION
         run: echo Deploying to DEV environment version ${{ steps.build.outputs.apiVersion }}...
       - run: echo "This job's status is ${{ job.status }}."
-
 
   DeploySit:
     name: Deploy to SIT
