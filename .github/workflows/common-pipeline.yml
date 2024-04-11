@@ -48,8 +48,8 @@ jobs:
       name: DEV
       url: 'http://dev-api.copeland.com'
     steps:
-      - name: Deploy ${{ needs.build.outputs.apiVersion }} to DEV
-        run: echo Deploying to DEV environment...
+      - name: Deploy to DEV
+        run: echo Deploying to DEV environment version ${{ needs.build.outputs.apiVersion }}...
       - run: echo "This job's status is ${{ job.status }}."
 
 
