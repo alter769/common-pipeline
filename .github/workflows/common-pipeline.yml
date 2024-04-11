@@ -68,7 +68,7 @@ jobs:
           name: api_version_from_file
       - shell: bash
         run: |
-          apiVersionFromFile=`cat api-version.txt`
+          apiVersionFromFile=`cat ./api-version.txt`
       - run: echo "value from file= $apiVersionFromFile"
 
   DeploySit:
