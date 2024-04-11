@@ -50,10 +50,10 @@ jobs:
       name: DEV
       url: 'http://dev-api.copeland.com'
     steps:
-      - env:
-          API_VERSION: ${{ needs.build.outputs.apiVersion }}
       - name: Deploy to DEV $API_VERSION
-        run: echo Deploying to DEV environment version ${{ steps.build.outputs.apiVersion }}...
+        env:
+          API_VERSION: ${{ needs.build.outputs.apiVersion }}
+        run: echo Deploying to DEV environment version $API_VERSION ...
       - run: echo "This job's status is ${{ job.status }}."
 
   DeploySit:
