@@ -35,10 +35,10 @@ jobs:
 
 #    - run: echo "The version is $pomVersion"
 
-#    - shell: bash
-#      run: |
-#        git commit --amend -m "Version 1.0.0"
-#	git push --force ${{github.repository}} ${{github.ref}}
+    - shell: bash
+      run: |
+        git commit --amend -m "Version 1.0.0"
+        git push --force ${{github.repository}} ${{github.ref}}
 
     - name: List files in the repository
       run: |
