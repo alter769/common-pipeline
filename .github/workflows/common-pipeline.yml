@@ -24,18 +24,23 @@ jobs:
     - name: Get version from pom
       id: pomversion
       run:  |
-        apiVersion=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout) >> $GITHUB_OUTPUT
+        apiVersion=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
+	echo "apiVersion=$apiVersion" >> $GITHUB_OUTPUT
     - run: echo "The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
     - name: Check out repository code
       uses: actions/checkout@v4
     - run: echo "The ${{ github.repository }} repository has been cloned to the runner."
     - run: echo "The workflow is now ready to test your code on the runner."
-    - run: echo "The version is "    
+    - run: echo "The version is " 
     
     - name: List files in the repository
       run: |
         ls ${{ github.workspace }}
     - run: echo "This job's status is ${{ job.status }}."
+
+
+  publish:
+
     
 
   DeployDev:
@@ -46,7 +51,7 @@ jobs:
       name: DEV
       url: 'http://dev-api.copeland.com'
     steps:
-      - name: Deploy to DEV
+      - name: Deploy ${{ needs.build.outputs.apiVersion }} to DEV
         run: echo Deploying to DEV environment...
       - run: echo "This job's status is ${{ job.status }}."
 
