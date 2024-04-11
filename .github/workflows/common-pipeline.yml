@@ -44,9 +44,9 @@ jobs:
     - run: echo "This job's status is ${{ job.status }}."
     - name: Save apiVersion to file
       uses: actions/upload-artifact@v4
-        with:
-          name: api_version_from_file
-          path: api-version.txt
+      with:
+        name: api_version_from_file
+        path: api-version.txt
 
   DeployDev:
     name: Deploy ${{ needs.BuildJob.outputs.apiVersion }} to DEV
