@@ -30,9 +30,7 @@ jobs:
       run: |
         ls ${{ github.workspace }}
     - run: echo "This job's status is ${{ job.status }}."
-    - name: Get version from pom
-      id: pomversion
-      run: |
+    - run: |
         apiVersion=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
 	echo $apiVersion
 
