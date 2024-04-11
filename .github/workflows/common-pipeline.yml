@@ -75,7 +75,7 @@ jobs:
         echo value from file=$apiVersionFromFile
 
   DeploySit:
-    name: Deploy ${{ needs.BuildJob.outputs.apiVersion }} to SIT
+    name: Deploy ${{ echo $apiVersionFromFile }} to SIT
     runs-on: ubuntu-latest
     needs: [DeployDev]
     environment:
@@ -88,4 +88,13 @@ jobs:
     - name: Deploy to SIT
       run: echo Deploying to SIT environment...
     - run: echo "This job's status is ${{ job.status }}."
+    - name: Retrieve apiVersion from file
+      uses: actions/download-artifact@v4
+      with:
+        name: api-version-from-file
+    - shell: bash
+      run: |
+        apiVersionFromFile=`cat api-version.txt`
+        echo value from file=$apiVersionFromFile
+    
 
