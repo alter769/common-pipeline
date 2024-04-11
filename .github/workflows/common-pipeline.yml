@@ -35,7 +35,7 @@ jobs:
     - name: Get version from pom
       id: pomversion
       run:  |
-        apiVersion=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
+        apiVersion=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout);
 	echo "api version is " + $apiVersion
 
   DeployDev:
