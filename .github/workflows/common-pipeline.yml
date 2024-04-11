@@ -15,10 +15,10 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/labeler@v4
-      with:
-        repo-token: ${{ secrets.token }}
-        configuration-path: ${{ inputs.config-path }}
+#    - uses: actions/labeler@v4
+#      with:
+#        repo-token: ${{ secrets.token }}
+#        configuration-path: ${{ inputs.config-path }}
     - run: echo "The job was automatically triggered by a ${{ github.event_name }} event"
     - run: echo "This job is now running on a ${{ runner.os }} server hosted by GitHub!"
     - run: echo "The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
