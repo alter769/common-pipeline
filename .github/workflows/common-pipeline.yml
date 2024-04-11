@@ -66,6 +66,9 @@ jobs:
       name: SIT
       url: 'http://sit-api.copeland.com'
     steps:
+      - env:
+          API_VERSION: ${{ needs.BuildJob.outputs.apiVersion }}
+        run: echo "$API_VERSION ..."    
       - name: Deploy to SIT
         run: echo Deploying to SIT environment...
       - run: echo "This job's status is ${{ job.status }}."
