@@ -24,12 +24,10 @@ jobs:
     - run: echo "The job was automatically triggered by a ${{ github.event_name }} event"
     - run: echo "This job is now running on a ${{ runner.os }} server hosted by GitHub!"
     - name: Get version from pom
-      id: pom-version
       run:  |
         pomVersion=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
     - name: Export version
-      id: publish-version
-      run:  echo "apiVersion=$pomVersion" >> $GITHUB_OUTPUT	
+      run: echo "apiVersion=$pomVersion" >> "$GITHUB_OUTPUT"
     - run: echo "The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
     - name: Check out repository code
       uses: actions/checkout@v4
@@ -53,7 +51,7 @@ jobs:
       - name: Deploy to DEV $API_VERSION
         env:
           API_VERSION: ${{ needs.build.outputs.apiVersion }}
-        run: echo Deploying to DEV environment version ${{ API_VERSION }} ...
+        run: echo "Deploying to DEV environment version $API_VERSION ..."
       - run: echo "This job's status is ${{ job.status }}."
 
   DeploySit:
