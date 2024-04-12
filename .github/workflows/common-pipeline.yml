@@ -29,6 +29,7 @@ jobs:
 #        ref: main
 
     - name: Get version from pom
+      id: set_version_from_pom
       run:  |
         pomVersion=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
     - name: Export api version
@@ -36,7 +37,7 @@ jobs:
 #      run: echo "apiVersion=$pomVersion" >> "$GITHUB_OUTPUT"
       run: echo "apiVersion=1.0.0" >> "$GITHUB_OUTPUT"
 
-    - run: echo "The version is $pomVersion"
+    - run: echo The version is ${{ steps.api_version.outputs.apiVersion }}
 
 # Example on how to modify the last commit message e.g. to contain the apiVersion
     - shell: bash
