@@ -33,7 +33,7 @@ jobs:
         git config --global user.email "cicd@company.com"
         git config --global user.name "MuleSoft Pipeline"
         git commit --amend -m "Version 1.0.0"
-	git push -u origin $GITHUB_REF
+        git push -u origin $GITHUB_REF
 
 
     - name: Get version from pom
