@@ -44,6 +44,7 @@ jobs:
         git config --global user.name "MuleSoft Pipeline"
         pwd
         git commit --amend -m "Version 1.0.0"
+	git pull
         git push -u origin $GITHUB_REF
 
     - name: List files in the repository
