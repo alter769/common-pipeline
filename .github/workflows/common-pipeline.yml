@@ -40,14 +40,14 @@ jobs:
     - run: echo The version is ${{ steps.api_version.outputs.apiVersion }}
 
 # Example on how to modify the last commit message e.g. to contain the apiVersion
-# TODO: it doesn't work 100% because it changes the history on the branch
-    - shell: bash
-      run: |
-        git config --global user.email "cicd@company.com"
-        git config --global user.name "github actions user"
-        pwd
-        git commit --amend -m "Version ${{ steps.api_version.outputs.apiVersion }} from pipeline"
-        git push -f origin $GITHUB_REF
+# TODO: it doesn't work 100% because it changes the history on the branch, and then the pulls from local don't work!
+#    - shell: bash
+#      run: |
+#        git config --global user.email "cicd@company.com"
+#        git config --global user.name "github actions user"
+#        pwd
+#        git commit --amend -m "Version ${{ steps.api_version.outputs.apiVersion }} from pipeline"
+#        git push -f origin $GITHUB_REF
 
     - name: List files in the repository
       run: |
