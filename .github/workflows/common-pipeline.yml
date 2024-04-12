@@ -47,8 +47,7 @@ jobs:
         git config --global user.name "github actions user"
         pwd
         git commit --amend -m "Version ${{ steps.api_version.outputs.apiVersion }} from pipeline"
-        git pull	
-        git push origin $GITHUB_REF
+        git push -f origin $GITHUB_REF
 
     - name: List files in the repository
       run: |
