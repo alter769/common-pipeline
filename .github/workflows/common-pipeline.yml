@@ -27,12 +27,6 @@ jobs:
       with:
         repository: ${{ github.repository }}
         ref: main
-      run: |
-        git config --global user.email "cicd@company.com"
-        git config --global user.name "MuleSoft Pipeline"
-        pwd
-        git commit --amend -m "Version 1.0.0"
-        git push --force ${{github.repository}} ${{github.ref}}
 
     - name: Get version from pom
       run:  |
@@ -44,13 +38,13 @@ jobs:
 
     - run: echo "The version is $pomVersion"
 
-#    - shell: bash
-#      run: |
-#        git config --global user.email "cicd@company.com"
-#        git config --global user.name "MuleSoft Pipeline"
-#        pwd
-#        git commit --amend -m "Version 1.0.0"
-#        git push --force ${{github.repository}} ${{github.ref}}
+    - shell: bash
+      run: |
+        git config --global user.email "cicd@company.com"
+        git config --global user.name "MuleSoft Pipeline"
+        pwd
+        git commit --amend -m "Version 1.0.0"
+        git push --force ${{github.repository}} ${{github.ref}}
 
     - name: List files in the repository
       run: |
