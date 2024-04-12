@@ -24,9 +24,17 @@ jobs:
 
     - name: Check out repository code
       uses: actions/checkout@v4
-      with:
-        repository: ${{ github.repository }}
-        ref: main
+#      with:
+#        repository: ${{ github.repository }}
+#        ref: main
+	
+    - name: change commit message
+        run: |
+        git config --global user.email "cicd@company.com"
+        git config --global user.name "MuleSoft Pipeline"
+        git commit --amend -m "Version 1.0.0"
+	git push -u origin $GITHUB_REF
+
 
     - name: Get version from pom
       run:  |
