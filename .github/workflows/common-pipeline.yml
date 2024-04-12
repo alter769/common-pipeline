@@ -28,7 +28,7 @@ jobs:
 #        repository: ${{ github.repository }}
 #        ref: main
 
-    - name: Get version from pom
+    - name: Get version from the pom 
       id: set_version_from_pom
       run:  |
         pomVersion=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
